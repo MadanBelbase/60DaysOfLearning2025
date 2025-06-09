@@ -13,7 +13,6 @@ app.use(cors({
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',  // Allowed methods
   preflightContinue: false  // Do not pass the request to the next handler
 }));
-
 // Routes
 app.use('/user', userRouter);
 

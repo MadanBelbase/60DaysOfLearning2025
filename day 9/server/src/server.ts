@@ -1,11 +1,16 @@
-import app from './app';
 import { config } from 'dotenv';
+config(); // ✅ MUST be before any process.env access
 
-config(); // Load environment variables from .env file
-const { PORT } = process.env;
+import app from './app';
+import { mongoconnect } from './utils/db';
 
-const port = PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+mongoconnect(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
 });
+
+
+
